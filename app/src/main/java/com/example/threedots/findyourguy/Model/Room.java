@@ -8,17 +8,27 @@ public class Room {
     private String ID;
     private String Title;
     private String UIDCreator;
+    private String Password;
     private String UserName;
     private boolean IsPrivate;
 
     public Room(){}
 
-    public Room(String ID, String Title, String UIDCreator, String UserName, boolean IsPrivate){
+    public Room(String ID, String Title, String UIDCreator, String UserName, boolean IsPrivate,String Password){
         this.ID = ID;
         this.Title = Title;
         this.UserName = UserName;
         this.UIDCreator = UIDCreator;
         this.IsPrivate = IsPrivate;
+        this.Password=Password;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        Password = password;
     }
 
     public String getID() {
