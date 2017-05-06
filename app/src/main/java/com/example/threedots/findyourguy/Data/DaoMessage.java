@@ -24,21 +24,16 @@ public class DaoMessage implements ValueEventListener {
 
     private static final String TAG = MessageActivity.class.getSimpleName();
     Context ctn;
-    private final Room room;
     private final User user;
     private ArrayList<Message> messageListArray=new ArrayList<>();
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference messagesRef;
-    private DatabaseReference roomRef;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
 
     public DaoMessage(Room room,User user,RecyclerView recyclerView,Context ctn){
         this.ctn=ctn;
-        this.room=room;
         this.user=user;
-        roomRef = database.getReference().child("ChatRooms").child(room.getID());
-        messagesRef = roomRef.child("messages");
+        messagesRef = FirebaseDatabase.getInstance().getReference()
+                .child("ChatRooms").child(room.getID()).child("messages");
         messagesRef.addValueEventListener(this);
         this.recyclerView=recyclerView;
     }
@@ -62,7 +57,7 @@ public class DaoMessage implements ValueEventListener {
                 message=new Message(ID,UserName,UIDSender,Message);
                 messageListArray.add(message);
             }
-            adapter=new messageAdapter(messageListArray,user,ctn);
+            RecyclerView.Adapter adapter = new messageAdapter(messageListArray, user, ctn);
             recyclerView.setAdapter(adapter);
             recyclerView.scrollToPosition(messageListArray.size()-1);
         }
