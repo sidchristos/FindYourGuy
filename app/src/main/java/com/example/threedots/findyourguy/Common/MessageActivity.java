@@ -30,7 +30,7 @@ public class MessageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.requestFocus();
-        User user=new User("12345678",3.2,5,"kapoios","ag1","douleuw","kati");
+        User user=new User("12345678",3.2,5,"kapoios","ag1","douleuw","kati");//ToDO ADD USER FROM AUTH
         Room room=new Room("2017131642","KATI","12345678","kapoios",false);
         DaoMessage daoMessage=new DaoMessage(room,user,recyclerView,getApplicationContext());
         FirebaseDatabase database = FirebaseDatabase.getInstance();

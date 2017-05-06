@@ -13,7 +13,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Cake on 6/5/2017.
@@ -32,7 +35,7 @@ public class DaoRoom implements ValueEventListener {
         this.user=user;
         this.ShowOnMine=ShowOnMine;
         roomsRef = FirebaseDatabase.getInstance().getReference()
-            .child("ChatRooms");
+                .child("ChatRooms");
         this.recyclerView=recyclerView;
         roomsRef.addValueEventListener(this);
     }
@@ -63,7 +66,7 @@ public class DaoRoom implements ValueEventListener {
             for(i=temp.size()-1;i<-1;i=i-1){
                 if(ShowOnMine&& temp.get(i).getUIDCreator().equals(user.getUserId())){
                     rooms.add(temp.get(i));
-                }else{
+                }else if(!ShowOnMine) {
                     rooms.add(temp.get(i));
                 }
             }
@@ -78,5 +81,32 @@ public class DaoRoom implements ValueEventListener {
 
     }
 
+    public void createRoom(String Title,Boolean IsPrivate,String Password){
+        SimpleDateFormat sdf;
+        Date now = new Date();
+        sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS", Locale.ENGLISH);
+        String ID = sdf.format(now);
+        roomsRef.child(ID).child("UIDCreator").setValue(user.getUserId());
+        roomsRef.child(ID).child("UserName").setValue(user.getName());
+        roomsRef.child(ID).child("Title").setValue(Title);
+        roomsRef.child(ID).child("IsPrivate").setValue(IsPrivate);
+        if(IsPrivate)
+            roomsRef.child(ID).child("Password").setValue(Password);
+    }
 
+    public void DeleteRoom(final String Key){
+        roomsRef.child(Key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot data) {
+                if(data!=null&&data.child("UIDCreator").getValue(String.class).equals(user.getUserId())){
+                    data.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 }

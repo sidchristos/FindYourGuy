@@ -22,6 +22,14 @@ public class Room {
         this.IsPrivate = IsPrivate;
         this.Password=Password;
     }
+    public Room(String ID, String Title, String UIDCreator, String UserName, boolean IsPrivate){
+        this.ID = ID;
+        this.Title = Title;
+        this.UserName = UserName;
+        this.UIDCreator = UIDCreator;
+        this.IsPrivate = IsPrivate;
+        this.Password="";
+    }
 
     public String getPassword() {
         return Password;

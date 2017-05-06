@@ -2,7 +2,6 @@ package com.example.threedots.findyourguy.Common;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.provider.Settings;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.R;
 
 import butterknife.BindView;
@@ -20,7 +20,7 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity{
     @BindView(R.id.viewpager) ViewPager viewPager;
     @BindView(R.id.tabs) TabLayout tabLayout;
-
+    public User user=new User("12345678",3.2,5,"kapoios","ag1","douleuw","kati");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

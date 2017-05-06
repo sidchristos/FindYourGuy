@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.threedots.findyourguy.Model.Room;
 import com.example.threedots.findyourguy.Model.User;
@@ -34,7 +36,23 @@ public class roomAdapter extends RecyclerView.Adapter<roomAdapter.roomViewHolder
 
     @Override
     public void onBindViewHolder(roomAdapter.roomViewHolder holder, int position) {
+        final Room room=rooms.get(position);
+        holder.Title.setText(room.getTitle());
+        holder.UserName.setText(room.getUserName());
+        if(room.getIsPrivate())
+            holder.Status.setText("Private");
+        else
+            holder.Status.setText("Public");
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMessages(room);
+            }
+        });
 
+    }
+
+    private void goToMessages(Room room) {
 
     }
 
@@ -42,11 +60,18 @@ public class roomAdapter extends RecyclerView.Adapter<roomAdapter.roomViewHolder
     public int getItemCount() {
         return rooms.size();
     }
-    public static class roomViewHolder extends RecyclerView.ViewHolder{
 
+    public static class roomViewHolder extends RecyclerView.ViewHolder{
+        TextView Title;
+        TextView UserName;
+        TextView Status;
+        LinearLayout container;
         public roomViewHolder(View itemView) {
             super(itemView);
-
+            Title=(TextView) itemView.findViewById(R.id.tvTitle);
+            UserName=(TextView)itemView.findViewById(R.id.tvUserCreator);
+            Status=(TextView)itemView.findViewById(R.id.tvPrivate);
+            container=(LinearLayout)itemView.findViewById(R.id.roomContainer);
         }
     }
 }
