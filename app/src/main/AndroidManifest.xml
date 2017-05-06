@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Common.MessageActivity"/>
+        <activity android:name=".Common.ProfileActivity"/>
         <activity
             android:name=".Common.MainActivity"
             android:label="@string/title_activity_message"

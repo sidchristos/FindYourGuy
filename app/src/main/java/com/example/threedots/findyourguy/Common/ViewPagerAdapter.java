@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.example.threedots.findyourguy.Ui.MyRoomsFragment;
 import com.example.threedots.findyourguy.Ui.RoomsListFragment;
 
-import static com.example.threedots.findyourguy.R.layout.fragment_user;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public ViewPagerAdapter(FragmentManager fm) {
