@@ -6,16 +6,17 @@ package com.example.threedots.findyourguy.Model;
 
 public class User {
 
-    private Long UserId;
-    private Long AvgRating;
-    private Long CRating;
+    private long UserId;
+    private double AvgRating;
+    private long CRating;
     private String Name;
     private String Address;
     private String Attitude;
     private String Description;
 
     public User(){}
-    public User(Long userId, Long avgRating, Long cRating, String name, String address, String attritube, String description)
+
+    public User(long userId, double avgRating, long cRating, String name, String address, String attitude, String description)
     {
 
         UserId = userId;
@@ -23,31 +24,31 @@ public class User {
         CRating = cRating;
         Name = name;
         Address = address;
-        Attitude = attritube;
+        Attitude = attitude;
         Description = description;
     }
 
-    public Long getUserId() {
+    public long getUserId() {
         return UserId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(long userId) {
         UserId = userId;
     }
 
-    public Long getAvgRating() {
+    public double getAvgRating() {
         return AvgRating;
     }
 
-    public void setAvgRating(Long avgRating) {
+    public void setAvgRating(double avgRating) {
         AvgRating = avgRating;
     }
 
-    public Long getCRating() {
+    public long getCRating() {
         return CRating;
     }
 
-    public void setCRating(Long CRating) {
+    public void setCRating(long CRating) {
         this.CRating = CRating;
     }
 
