@@ -5,15 +5,15 @@ package com.example.threedots.findyourguy.Model;
  */
 
 public class Room {
-    private long ID;
+    private String ID;
     private String Title;
-    private long UIDCreator;
+    private String UIDCreator;
     private String UserName;
     private boolean IsPrivate;
 
     public Room(){}
 
-    public Room(long ID, String Title, long UIDCreator, String UserName, boolean IsPrivate){
+    public Room(String ID, String Title, String UIDCreator, String UserName, boolean IsPrivate){
         this.ID = ID;
         this.Title = Title;
         this.UserName = UserName;
@@ -21,11 +21,11 @@ public class Room {
         this.IsPrivate = IsPrivate;
     }
 
-    public long getID() {
+    public String getID() {
         return ID;
     }
 
-    public long getUIDCreator() {
+    public String getUIDCreator() {
         return UIDCreator;
     }
 
@@ -41,11 +41,11 @@ public class Room {
         return IsPrivate;
     }
 
-    public void setID(long ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
-    public void setUIDCreator(long UIDCreator) {
+    public void setUIDCreator(String UIDCreator) {
         this.UIDCreator = UIDCreator;
     }
 
