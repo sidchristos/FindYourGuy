@@ -13,10 +13,6 @@ import com.example.threedots.findyourguy.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Cake on 6/5/2017.
- */
-
 public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageViewHolder>{
     ArrayList<Message> messageListArray;
 
@@ -27,7 +23,7 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageV
     @Override
     public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_message,parent,false);
-        return new MessageViewHolder(view, messageActivity);
+        return new MessageViewHolder(view);
     }
 
     @Override
@@ -47,8 +43,8 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageV
     public static class MessageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvMessage,tvUserName,tvUID;
         CardView messageHolder;
-        MessageActivity messageActivity;
-        public MessageViewHolder(View itemView,MessageActivity messageActivity) {
+
+        public MessageViewHolder(View itemView) {
             super(itemView);
             tvMessage=(TextView) itemView.findViewById(R.id.tvMessage);
             tvUserName=(TextView) itemView.findViewById(R.id.tvUsername);

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="150dp"
+    android:background="#3E80B4"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_user_profile"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:text="@string/user_profile"
+        android:textColor="#5DBCD2"
+        android:layout_margin="10dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_settings"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:text="@string/settings"
+        android:layout_margin="10dp"
+        android:textColor="#5DBCD2"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_margin="10dp"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:text="@string/logout"
+        android:textColor="#5DBCD2"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

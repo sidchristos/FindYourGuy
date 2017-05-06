@@ -30,14 +30,7 @@ public class ExampleUnitTest {
         assertTrue(room.getIsPrivate());
     }
 
-    @Test
-    public void test_Message() throws Exception {
-        Message message = new Message(10, 45, "Hello");
 
-        assertEquals(10, message.getID());
-        assertEquals(45, message.getUIDSender());
-        assertEquals("Hello", message.getMessage());
-    }
 
     @Test
     public void test_User() throws Exception{
