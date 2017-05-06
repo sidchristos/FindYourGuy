@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "461289832921",
+    "firebase_url": "https://hackathon-f141e.firebaseio.com",
+    "project_id": "hackathon-f141e",
+    "storage_bucket": "hackathon-f141e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461289832921:android:cbb13ccdbd515297",
+        "android_client_info": {
+          "package_name": "com.hackthon.threedots.findyourguy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461289832921-h1i34ag9p9j6kka056a8hqvofjk13mbn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hackthon.threedots.findyourguy",
+            "certificate_hash": "036ab08be1105cab36d92433d7b7b011e9866da2"
+          }
+        },
+        {
+          "client_id": "461289832921-bi83l3ndqarorea30u2ls6bj9g496hi6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvdQTG-0Cye3NsUPbRYv3pZCziQUrWNZQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461289832921-bi83l3ndqarorea30u2ls6bj9g496hi6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461289832921:android:62efd3e44642474b",
+        "android_client_info": {
+          "package_name": "com.example.threedots.findyourguy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461289832921-dhv8tv5cgohnvtoal3r2tq17jre0d2je.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.threedots.findyourguy",
+            "certificate_hash": "036ab08be1105cab36d92433d7b7b011e9866da2"
+          }
+        },
+        {
+          "client_id": "461289832921-bi83l3ndqarorea30u2ls6bj9g496hi6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvdQTG-0Cye3NsUPbRYv3pZCziQUrWNZQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461289832921-bi83l3ndqarorea30u2ls6bj9g496hi6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
