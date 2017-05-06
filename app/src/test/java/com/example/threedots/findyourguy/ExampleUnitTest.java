@@ -32,9 +32,10 @@ public class ExampleUnitTest {
 
     @Test
     public void test_Message() throws Exception {
-        Message message = new Message(10, 45, "Hello");
+        Message message = new Message(10, "Paok", 45, "Hello");
 
         assertEquals(10, message.getID());
+        assertEquals("Paok", message.getUserName());
         assertEquals(45, message.getUIDSender());
         assertEquals("Hello", message.getMessage());
     }
@@ -94,10 +95,12 @@ public class ExampleUnitTest {
         Message message = new Message();
 
         message.setID(758);
+        message.setUserName("giannhs");
         message.setMessage("dwda");
         message.setUIDSender(54);
 
         assertEquals(758, message.getID());
+        assertEquals("giannhs", message.getUserName());
         assertEquals("dwda", message.getMessage());
         assertEquals(54, message.getUIDSender());
     }
