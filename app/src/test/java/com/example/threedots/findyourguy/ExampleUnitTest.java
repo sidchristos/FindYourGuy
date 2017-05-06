@@ -71,4 +71,34 @@ public class ExampleUnitTest {
         assertEquals("bad", user.getAttitude());
         assertEquals("other", user.getDescription());
     }
+
+    @Test
+    public void test_Set_Room() throws Exception{
+        Room room = new Room();
+
+        room.setID(9);
+        room.setTitle("Party");
+        room.setUIDCreator(5);
+        room.setUserName("xristos");
+        room.setIsPrivate(false);
+
+        assertEquals(9, room.getID());
+        assertEquals("Party", room.getTitle());
+        assertEquals(5, room.getUIDCreator());
+        assertEquals("xristos", room.getUserName());
+        assertFalse(room.getIsPrivate());
+    }
+
+    @Test
+    public void test_Set_Message() throws Exception{
+        Message message = new Message();
+
+        message.setID(758);
+        message.setMessage("dwda");
+        message.setUIDSender(54);
+
+        assertEquals(758, message.getID());
+        assertEquals("dwda", message.getMessage());
+        assertEquals(54, message.getUIDSender());
+    }
 }
