@@ -6,7 +6,7 @@ package com.example.threedots.findyourguy.Model;
 
 public class User {
 
-    private long UserId;
+    private String UserId;
     private double AvgRating;
     private long CRating;
     private String Name;
@@ -16,7 +16,7 @@ public class User {
 
     public User(){}
 
-    public User(long userId, double avgRating, long cRating, String name, String address, String attitude, String description)
+    public User(String userId, double avgRating, long cRating, String name, String address, String attitude, String description)
     {
 
         UserId = userId;
@@ -28,11 +28,11 @@ public class User {
         Description = description;
     }
 
-    public long getUserId() {
+    public String getUserId() {
         return UserId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(String userId) {
         UserId = userId;
     }
 

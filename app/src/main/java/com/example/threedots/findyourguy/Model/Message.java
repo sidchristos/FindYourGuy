@@ -5,13 +5,13 @@ package com.example.threedots.findyourguy.Model;
  */
 
 public class Message {
-    private long ID;
-    private long UIDSender;
+    private String ID;
+    private String UIDSender;
     private String Message,UserName;
 
     public Message(){}
 
-    public Message(long ID, String UserName, long  UIDSender, String Message){
+    public Message(String ID, String UserName, String  UIDSender, String Message){
         this.ID = ID;
         this.UIDSender = UIDSender;
         this.Message = Message;
@@ -26,11 +26,11 @@ public class Message {
         UserName = userName;
     }
 
-    public void setID(long ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
-    public void setUIDSender(long UIDSender) {
+    public void setUIDSender(String UIDSender) {
         this.UIDSender = UIDSender;
     }
 
@@ -38,11 +38,11 @@ public class Message {
         this.Message = message;
     }
 
-    public long getID() {
+    public String getID() {
         return ID;
     }
 
-    public long getUIDSender() {
+    public String getUIDSender() {
         return UIDSender;
     }
 
