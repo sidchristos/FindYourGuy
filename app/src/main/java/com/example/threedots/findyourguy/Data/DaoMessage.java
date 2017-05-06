@@ -55,7 +55,7 @@ public class DaoMessage implements ValueEventListener {
                 message=new Message(ID,UserName,UIDSender,Message);
                 messageListArray.add(message);
             }
-            
+
         }
     }
 
