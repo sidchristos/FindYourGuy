@@ -1,5 +1,7 @@
 package com.example.threedots.findyourguy.Data;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.example.threedots.findyourguy.Model.Message;
 import com.example.threedots.findyourguy.Model.Room;
 import com.example.threedots.findyourguy.Model.User;
@@ -21,10 +23,11 @@ import java.util.Locale;
 public class DaoMessage implements ValueEventListener {
     private final Room room;
     private final User user;
-    ArrayList<Message> messageListArray;
+    private ArrayList<Message> messageListArray;
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference messagesRef;
-    DatabaseReference roomRef;
+    private DatabaseReference messagesRef;
+    private DatabaseReference roomRef;
+    private RecyclerView recyclerView;
 
     DaoMessage(Room room,User user){
         messageListArray=new ArrayList<>();
@@ -33,7 +36,7 @@ public class DaoMessage implements ValueEventListener {
         roomRef = database.getReference().child(Long.toString(room.getID()));
         messagesRef = roomRef.child("messages");
         messagesRef.addValueEventListener(this);
-
+        this.recyclerView=recyclerView;
     }
 
     @Override
@@ -52,7 +55,7 @@ public class DaoMessage implements ValueEventListener {
                 message=new Message(ID,UserName,UIDSender,Message);
                 messageListArray.add(message);
             }
-
+            
         }
     }
 
