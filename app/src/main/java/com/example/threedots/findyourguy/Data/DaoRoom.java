@@ -2,7 +2,10 @@ package com.example.threedots.findyourguy.Data;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
+import com.example.threedots.findyourguy.Common.MainActivity;
+import com.example.threedots.findyourguy.Common.MessageActivity;
 import com.example.threedots.findyourguy.Model.Room;
 import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.RecAdapers.messageAdapter;
@@ -29,7 +32,7 @@ public class DaoRoom implements ValueEventListener {
     private Boolean ShowOnMine;
     private RecyclerView recyclerView;
     private DatabaseReference roomsRef;
-
+    private static final String TAG = MainActivity.class.getSimpleName();
     public DaoRoom(User user,RecyclerView recyclerView, Context context,Boolean ShowOnMine){
         this.context=context;
         this.user=user;

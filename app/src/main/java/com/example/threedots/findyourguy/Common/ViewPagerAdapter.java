@@ -10,8 +10,11 @@ import com.example.threedots.findyourguy.Ui.RoomsListFragment;
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-    public ViewPagerAdapter(FragmentManager fm) {
+    public final MainActivity mainActivity;
+
+    public ViewPagerAdapter(FragmentManager fm, MainActivity mainActivity) {
         super(fm);
+        this.mainActivity=mainActivity;
     }
 
     @Override
@@ -19,16 +22,16 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         android.support.v4.app.Fragment selectedFragment;
         switch (position) {
             case 0:
-                selectedFragment = new RoomsListFragment();
+                selectedFragment = new MyRoomsFragment();
                 break;
             /*case 1:
                 selectedFragment = new ;//TODO tab fragments
-                break;
-            case 2:
-                selectedFragment = new ;
                 break;*/
+            case 2:
+                selectedFragment = new RoomsListFragment();
+                break;
             default:
-                selectedFragment = new MyRoomsFragment() ;
+                selectedFragment = new MyRoomsFragment();
                 break;
         }
         return selectedFragment;

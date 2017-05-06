@@ -6,10 +6,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.threedots.findyourguy.Data.DaoRoom;
 import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.R;
 
@@ -21,15 +24,15 @@ public class MainActivity extends AppCompatActivity{
     @BindView(R.id.viewpager) ViewPager viewPager;
     @BindView(R.id.tabs) TabLayout tabLayout;
     public User user=new User("12345678",3.2,5,"kapoios","ag1","douleuw","kati");
-
+    public RecyclerView.LayoutManager layoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        layoutManager=new LinearLayoutManager(MainActivity.this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setupViewPager();
-
-
     }
 
     @OnClick(R.id.btn_Set_Main)
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void setupViewPager(){
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(),MainActivity.this);
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }
