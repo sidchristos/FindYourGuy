@@ -5,6 +5,7 @@ package com.example.threedots.findyourguy.Model;
  */
 
 public class User {
+
     private Long UserId;
     private Long AvgRating;
     private Long CRating;
@@ -81,4 +82,6 @@ public class User {
     public void setDescription(String description) {
         Description = description;
     }
+
+
 }
