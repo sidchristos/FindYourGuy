@@ -64,6 +64,7 @@ public class DaoMessage implements ValueEventListener {
             }
             adapter=new messageAdapter(messageListArray,user,ctn);
             recyclerView.setAdapter(adapter);
+            recyclerView.scrollToPosition(messageListArray.size()-1);
         }
     }
 

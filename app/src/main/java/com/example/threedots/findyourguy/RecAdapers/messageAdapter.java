@@ -8,14 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.threedots.findyourguy.Model.Message;
 import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.R;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageViewHolder>{

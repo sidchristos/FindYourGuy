@@ -19,11 +19,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MessageActivity extends AppCompatActivity {
 
-    RecyclerView.LayoutManager layoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+        RecyclerView.LayoutManager layoutManager;
         layoutManager=new LinearLayoutManager(MessageActivity.this);
         RecyclerView recyclerView=(RecyclerView)findViewById(R.id.recMessageHolder);
         recyclerView.setLayoutManager(layoutManager);
