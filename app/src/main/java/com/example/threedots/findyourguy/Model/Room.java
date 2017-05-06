@@ -8,13 +8,15 @@ public class Room {
     private long ID;
     private String Title;
     private long UIDCreator;
+    private String UserName;
     private boolean IsPrivate;
 
     public Room(){}
 
-    public Room(long ID, String Title, long UIDCreator, boolean IsPrivate){
+    public Room(long ID, String Title, long UIDCreator, String UserName, boolean IsPrivate){
         this.ID = ID;
         this.Title = Title;
+        this.UserName = UserName;
         this.UIDCreator = UIDCreator;
         this.IsPrivate = IsPrivate;
     }
@@ -25,6 +27,10 @@ public class Room {
 
     public long getUIDCreator() {
         return UIDCreator;
+    }
+
+    public String getUserName() {
+        return UserName;
     }
 
     public String getTitle() {
@@ -41,6 +47,10 @@ public class Room {
 
     public void setUIDCreator(long UIDCreator) {
         this.UIDCreator = UIDCreator;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
     }
 
     public void setTitle(String title) {
