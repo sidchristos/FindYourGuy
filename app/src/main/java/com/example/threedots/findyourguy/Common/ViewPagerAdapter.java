@@ -4,6 +4,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.threedots.findyourguy.Ui.MyRoomsFragment;
+import com.example.threedots.findyourguy.Ui.RoomsListFragment;
 
 import static com.example.threedots.findyourguy.R.layout.fragment_user;
 
@@ -17,7 +18,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         android.support.v4.app.Fragment selectedFragment;
         switch (position) {
             case 0:
-                selectedFragment = new MyRoomsFragment();
+                selectedFragment = new RoomsListFragment();
                 break;
             /*case 1:
                 selectedFragment = new ;//TODO tab fragments

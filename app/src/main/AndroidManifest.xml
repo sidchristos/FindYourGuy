@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Common.MainActivity"/>
+        <activity android:name=".Common.MessageActivity"/>
         <activity
-            android:name=".Common.MessageActivity"
+            android:name=".Common.MainActivity"
             android:label="@string/title_activity_message"
             android:theme="@style/AppTheme"><intent-filter>
         <action android:name="android.intent.action.MAIN" />
