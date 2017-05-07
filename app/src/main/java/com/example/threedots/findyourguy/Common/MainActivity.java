@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.threedots.findyourguy.Data.DaoRoom;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity{
     @BindView(R.id.viewpager) ViewPager viewPager;
     @BindView(R.id.tabs) TabLayout tabLayout;
     public RecyclerView.LayoutManager layoutManager;
+    private TextView textViewUsername;
     private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,11 @@ public class MainActivity extends AppCompatActivity{
         Bundle b = iin.getExtras();
         if(b!=null)
         {
+            textViewUsername=(TextView) findViewById(R.id.textViewUsername);
             user=new User((String)b.get("UID"), (String)b.get("UserName"));
+            textViewUsername.setText((String)b.get("UserName"));
+        }else{
+            finish();
         }
         ButterKnife.bind(this);
         setupViewPager();
@@ -62,7 +69,7 @@ public class MainActivity extends AppCompatActivity{
         ButtonUsrProf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DaoUser daoUser=new DaoUser(MainActivity.this,user.getUserId());
+                DaoUser daoUser=new DaoUser(getApplicationContext(),user.getUserId());
                 dialog.dismiss();
             }
         });

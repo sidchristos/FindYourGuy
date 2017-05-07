@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.threedots.findyourguy.Common.MessageActivity;
+import com.example.threedots.findyourguy.Data.DaoUser;
 import com.example.threedots.findyourguy.Model.Message;
 import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.R;
@@ -71,8 +72,7 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageV
         }
 
         private void functionToOpenClickedUserProfile(String UID) {
-            MessageActivity messageActivity=(MessageActivity) ctn;
-
+            DaoUser daoUser=new DaoUser(ctn,UID);
         }
     }
 }

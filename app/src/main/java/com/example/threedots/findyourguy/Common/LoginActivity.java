@@ -20,6 +20,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import static android.R.attr.password;
 
 public class LoginActivity extends AppCompatActivity {
@@ -30,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText LoginEmail,LoginPassword,etNewUserName,etNewEmail,etPassword,etOccupation,etAddress;
     Button btSignUP,btLogin,RegisterNext,LoginNext;
     ImageView BackButton;
+    private DatabaseReference roomsRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +55,20 @@ public class LoginActivity extends AppCompatActivity {
                         myRefUser.child("Desc").setValue("");
                         myRefUser.child("CRating").setValue(0);
                         myRefUser.child("AvgRating").setValue(0);
+
                     }
-                    goToMain(user.getUid(),etNewUserName.getText().toString());
+                    roomsRef = FirebaseDatabase.getInstance().getReference()
+                            .child("ChatRooms");
+                    SimpleDateFormat sdf;
+                    Date now = new Date();
+                    sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS", Locale.ENGLISH);
+                    String ID = sdf.format(now);
+
+                    roomsRef.child(ID).child("UIDCreator").setValue("12314123");
+                    roomsRef.child(ID).child("UserName").setValue("Kapoios");
+                    roomsRef.child(ID).child("Title").setValue("Kati");
+                    roomsRef.child(ID).child("IsPrivate").setValue(false);
+                    goToMain(user.getUid(),user.getDisplayName());
                 }
             }
         };
