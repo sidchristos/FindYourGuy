@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -82,6 +83,13 @@ public class MainActivityLogged extends AppCompatActivity {
         AllRoomsTab=(ConstraintLayout)findViewById(R.id.AllRoom);
         Contact=(ConstraintLayout)findViewById(R.id.Contact);
 
+        Button addRoom=(Button)findViewById(R.id.btAddRoom) ;
+        addRoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogCreate();
+            }
+        });
         ImageView img =(ImageView)findViewById(R.id.imageView3) ;
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +115,8 @@ public class MainActivityLogged extends AppCompatActivity {
         this.user=user;
         mRecyclerView=(RecyclerView)findViewById(R.id.recAllRooms);
         recAllRooms=(RecyclerView)findViewById(R.id.recMyRooms);
+
+
 
         layoutManager=new LinearLayoutManager(MainActivityLogged.this);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -160,6 +170,26 @@ public class MainActivityLogged extends AppCompatActivity {
                 startActivity(intent);
                 dialog.dismiss();
                 finish();
+            }
+        });
+        dialog.show();
+    }
+
+    private void dialogCreate() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_new_room);
+        final EditText TitleRoom =(EditText) dialog.findViewById(R.id.etNewTitle);
+        Button ButtonUsrProf = (Button) dialog.findViewById(R.id.btn_publish);
+        ButtonUsrProf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Title=TitleRoom.getText().toString();
+                Title=Title.replaceAll("^ +| +$|( )+", "$1");
+                if(Title.length()<3)
+                    daoRoom.createRoom(Title,false,"");
+                else
+                    Toast.makeText(context,"not long name for a Title",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
         });
         dialog.show();
