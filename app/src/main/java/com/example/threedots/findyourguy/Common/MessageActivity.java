@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.threedots.findyourguy.Data.DaoMessage;
 import com.example.threedots.findyourguy.Model.Message;
@@ -25,10 +26,13 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MessageActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    TextView TitleRoom,athorRoom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+        TitleRoom=(TextView)findViewById(R.id.tvTitleRoom) ;
+        athorRoom=(TextView)findViewById(R.id.tvUserNameRoom) ;
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -48,6 +52,10 @@ public class MessageActivity extends AppCompatActivity {
                         String ID =(String)b.get("ID");
                         String Title =(String)b.get("Title");
                         String UserName =(String)b.get("UserName");
+                        if(UserName!=null && Title!=null){
+                            athorRoom.setText(UserName);
+                            TitleRoom.setText(Title);
+                        }
                         String UIDCreator =(String)b.get("UIDCreator");
                         Room room=new Room(ID,Title,UIDCreator,UserName,false);
                         User user=new User(userFb.getUid(),userFb.getDisplayName());

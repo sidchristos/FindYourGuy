@@ -1,7 +1,9 @@
 package com.example.threedots.findyourguy.Common;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,16 +11,22 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.threedots.findyourguy.Core.Adapters.roomAdapter;
 import com.example.threedots.findyourguy.Data.DaoRoom;
 import com.example.threedots.findyourguy.Data.DaoUser;
+import com.example.threedots.findyourguy.Listeners.ListenerOnFinish;
+import com.example.threedots.findyourguy.Model.Room;
 import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.R;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,14 +35,18 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity{
     @BindView(R.id.viewpager) ViewPager viewPager;
     @BindView(R.id.tabs) TabLayout tabLayout;
+    public ConstraintLayout MyRoomTab,AllRoomsTab,Contact;
     public RecyclerView.LayoutManager layoutManager;
     private TextView textViewUsername;
     private User user;
+    RecyclerView mRecyclerView;
+    RecyclerView recAllRooms;
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        layoutManager=new LinearLayoutManager(MainActivity.this);
         setContentView(R.layout.activity_main);
+        context=getApplicationContext();
         Intent iin= getIntent();
         Bundle b = iin.getExtras();
         if(b!=null)
@@ -45,6 +57,67 @@ public class MainActivity extends AppCompatActivity{
         }else{
             finish();
         }
+        mRecyclerView=(RecyclerView)findViewById(R.id.recMyRooms);
+        recAllRooms=(RecyclerView)findViewById(R.id.recAllRooms);
+        layoutManager=new LinearLayoutManager(MainActivity.this);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(new RecyclerView.Adapter() {
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                return null;
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+            }
+
+            @Override
+            public int getItemCount() {
+                return 0;
+            }
+        });
+        mRecyclerView.setHasFixedSize(true);
+
+/*
+        daoRoom=new DaoRoom( new User("kati","kati"),new ListenerOnFinish(){
+            @Override
+            public void OnFinish(ArrayList<Room> rooms) {
+                tempList =rooms;
+                roomAdapter mAdapter = new roomAdapter(tempList, new User("kati", "kati"),context, daoRoom);
+                MainActivity.this.mRecyclerView.setAdapter(mAdapter);
+            }
+        }, context,false);*/
+
+        layoutManager=new LinearLayoutManager(MainActivity.this);
+        recAllRooms.setLayoutManager(layoutManager);
+        recAllRooms.setAdapter(new RecyclerView.Adapter() {
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                return null;
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+            }
+
+            @Override
+            public int getItemCount() {
+                return 0;
+            }
+        });
+        recAllRooms.setHasFixedSize(true);
+/*
+
+        daoRoom=new DaoRoom( new User("kati","kati"),new ListenerOnFinish(){
+            @Override
+            public void OnFinish(ArrayList<Room> rooms) {
+                tempList =rooms;
+                roomAdapter mAdapter = new roomAdapter(tempList, new User("kati", "kati"),context, daoRoom);
+                MainActivity.this.recAllRooms.setAdapter(mAdapter);
+            }
+        }, context,false);*/
         ButterKnife.bind(this);
         setupViewPager();
     }
@@ -94,6 +167,9 @@ public class MainActivity extends AppCompatActivity{
         dialog.show();
     }
 
+    public void setAdapter(RecyclerView.Adapter adapter){
+        mRecyclerView.setAdapter(adapter);
+    }
 
 }
 

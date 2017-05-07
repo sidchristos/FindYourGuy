@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.threedots.findyourguy.Common.MainActivity;
+import com.example.threedots.findyourguy.Common.MainActivityLogged;
 import com.example.threedots.findyourguy.Common.MessageActivity;
 import com.example.threedots.findyourguy.Data.DaoRoom;
 import com.example.threedots.findyourguy.Model.Room;
@@ -17,6 +18,8 @@ import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.R;
 
 import java.util.ArrayList;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 /**
  * Created by Cake on 6/5/2017.
@@ -36,7 +39,7 @@ public class roomAdapter extends RecyclerView.Adapter<roomAdapter.roomViewHolder
 
     @Override
     public roomAdapter.roomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_message,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_room,parent,false);
         return new roomAdapter.roomViewHolder(view);
     }
 
@@ -66,13 +69,13 @@ public class roomAdapter extends RecyclerView.Adapter<roomAdapter.roomViewHolder
     }
 
     private void goToMessages(Room room) {
-        MainActivity mainActivity=(MainActivity)context;
         String ID= room.getID();
         String Title = room.getTitle();
         String UserName = room.getUserName();
         String UIDCreator = room.getUIDCreator();
         if(!room.getIsPrivate()){
-            Intent intent=new Intent(mainActivity, MessageActivity.class);
+            Intent intent=new Intent(context, MessageActivity.class);
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("ID", ID);
             intent.putExtra("Title", Title);
             intent.putExtra("UserName", UserName);
@@ -87,12 +90,12 @@ public class roomAdapter extends RecyclerView.Adapter<roomAdapter.roomViewHolder
         return rooms.size();
     }
 
-    public static class roomViewHolder extends RecyclerView.ViewHolder{
+    static class roomViewHolder extends RecyclerView.ViewHolder{
         TextView Title;
         TextView UserName;
         TextView Status;
         LinearLayout container;
-        public roomViewHolder(View itemView) {
+        roomViewHolder(View itemView) {
             super(itemView);
             Title=(TextView) itemView.findViewById(R.id.tvTitle);
             UserName=(TextView)itemView.findViewById(R.id.tvUserCreator);

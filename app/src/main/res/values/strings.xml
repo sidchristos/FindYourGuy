@@ -9,4 +9,8 @@
     <string name="logout">Logout</string>
     <string name="title_activity_message">Message Activity</string>
     <string name="no_rooms_found">No Rooms Found</string>
+    <string name="title_activity_main_logged">MainActivityLogged</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

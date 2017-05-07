@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -47,6 +48,9 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     if(FirstTime){
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(etNewUserName.getText().toString()).build();
+                        user.updateProfile(profileUpdates);
                         DatabaseReference myRefUser = FirebaseDatabase.getInstance().getReference()
                                 .child("Users").child(user.getUid());
                         myRefUser.child("UserName").setValue(etNewUserName.getText().toString());
@@ -57,17 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                         myRefUser.child("AvgRating").setValue(0);
 
                     }
-                    roomsRef = FirebaseDatabase.getInstance().getReference()
-                            .child("ChatRooms");
-                    SimpleDateFormat sdf;
-                    Date now = new Date();
-                    sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS", Locale.ENGLISH);
-                    String ID = sdf.format(now);
 
-                    roomsRef.child(ID).child("UIDCreator").setValue("12314123");
-                    roomsRef.child(ID).child("UserName").setValue("Kapoios");
-                    roomsRef.child(ID).child("Title").setValue("Kati");
-                    roomsRef.child(ID).child("IsPrivate").setValue(false);
                     goToMain(user.getUid(),user.getDisplayName());
                 }
             }
@@ -158,7 +152,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToMain(String uid, String s) {
-        Intent i=new Intent(LoginActivity.this,MainActivity.class);
+        Intent i=new Intent(LoginActivity.this,MainActivityLogged.class);
         i.putExtra("UID",uid);
         i.putExtra("UserName",s);
         startActivity(i);

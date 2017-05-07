@@ -2,6 +2,7 @@ package com.example.threedots.findyourguy.Common;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.View;
 
 import com.example.threedots.findyourguy.Ui.MyRoomsFragment;
 
@@ -17,23 +18,29 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public android.support.v4.app.Fragment getItem(int position) {
-        android.support.v4.app.Fragment selectedFragment;
         switch (position) {
             case 0:
-                selectedFragment = new MyRoomsFragment();
+                mainActivity.MyRoomTab.setVisibility(View.VISIBLE);
+                mainActivity.AllRoomsTab.setVisibility(View.GONE);
+                mainActivity.Contact.setVisibility(View.GONE);
                 break;
-           /* case 1:
-                selectedFragment = new ;//TODO tab fragments
-                break;*/
+            case 1:
+                mainActivity.MyRoomTab.setVisibility(View.GONE);
+                mainActivity.AllRoomsTab.setVisibility(View.GONE);
+                mainActivity.Contact.setVisibility(View.VISIBLE);
+                break;
             case 2:
-                selectedFragment = new MyRoomsFragment();
-                //selectedFragment = new ExploreFragment();
+                mainActivity.MyRoomTab.setVisibility(View.GONE);
+                mainActivity.AllRoomsTab.setVisibility(View.VISIBLE);
+                mainActivity.Contact.setVisibility(View.GONE);
                 break;
             default:
-                selectedFragment = new MyRoomsFragment();
+                mainActivity.MyRoomTab.setVisibility(View.VISIBLE);
+                mainActivity.AllRoomsTab.setVisibility(View.GONE);
+                mainActivity.Contact.setVisibility(View.GONE);
                 break;
         }
-        return selectedFragment;
+        return null;
     }
 
     @Override

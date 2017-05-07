@@ -25,17 +25,20 @@ import java.util.Locale;
  */
 
 public class DaoRoom implements ValueEventListener {
-    private final ListenerOnFinish listenerOnFinish;
+    private final RecyclerView recyclerView;
     private ArrayList<Room> rooms=new ArrayList<>();
+    private ArrayList<Room> temp=new ArrayList<>();
     private Context context;
     private User user;
     private Boolean ShowOnMine;
     private DatabaseReference roomsRef;
-    public DaoRoom(User user,ListenerOnFinish listenerOnFinish, Context context,Boolean ShowOnMine){
+    Room room;
+    String ID,Title,UIDCreator,UserName;
+    public DaoRoom(User user,RecyclerView recyclerView, Context context,Boolean ShowOnMine){
         this.context=context;
         this.user=user;
         this.ShowOnMine=ShowOnMine;
-        this.listenerOnFinish=listenerOnFinish;
+        this.recyclerView=recyclerView;
         roomsRef = FirebaseDatabase.getInstance().getReference()
                 .child("ChatRooms");
         roomsRef.addValueEventListener(this);
@@ -44,35 +47,22 @@ public class DaoRoom implements ValueEventListener {
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         if(dataSnapshot!=null){
-            ArrayList<Room> temp=new ArrayList<>();
+            temp.clear();
             rooms.clear();
-            Room room;
-            String ID,Title,UIDCreator,UserName,Password;
-            boolean IsPrivate;
             for(DataSnapshot data:dataSnapshot.getChildren()){
+
                 ID=data.getKey();
                 Title=data.child("Title").getValue(String.class);
                 UIDCreator=data.child("UIDCreator").getValue(String.class);
                 UserName=data.child("UserName").getValue(String.class);
-                IsPrivate=data.child("IsPrivate").getValue(Boolean.class);
-                if(IsPrivate){
-                    Password=data.child("Password").getValue(String.class);
-                    room=new Room(ID,Title,UIDCreator,UserName, true,Password);
-                }else{
-                    room=new Room(ID,Title,UIDCreator,UserName, false," ");
-                }
-                Toast.makeText(context,ID+" "+Title+" "+UIDCreator+" "+UserName,Toast.LENGTH_LONG).show();
-                temp.add(room);
+                room=new Room(ID,Title,UIDCreator,UserName, false," ");
+                if(!ShowOnMine)
+                    rooms.add(room);
+                else if(UIDCreator.equals(user.getUserId()))
+                    rooms.add(room);
             }
-            int i;
-            for(i=temp.size()-1;i<-1;i=i-1){
-                if(ShowOnMine&& temp.get(i).getUIDCreator().equals(user.getUserId())){
-                    rooms.add(temp.get(i));
-                }else if(!ShowOnMine) {
-                    rooms.add(temp.get(i));
-                }
-            }
-            listenerOnFinish.OnFinish(rooms);
+            RecyclerView.Adapter ad=new roomAdapter(rooms,user,context,this);
+            recyclerView.setAdapter(ad);
         }
     }
 

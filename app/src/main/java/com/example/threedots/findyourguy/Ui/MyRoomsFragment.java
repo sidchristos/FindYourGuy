@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.threedots.findyourguy.Common.MainActivity;
 import com.example.threedots.findyourguy.Core.Adapters. MyRoomsAdapter;
+import com.example.threedots.findyourguy.Core.Adapters.roomAdapter;
 import com.example.threedots.findyourguy.Data.DaoRoom;
 import com.example.threedots.findyourguy.Listeners.ListenerOnFinish;
 import com.example.threedots.findyourguy.Model.Room;
@@ -28,17 +30,16 @@ import butterknife.ButterKnife;
 
 
 public class MyRoomsFragment extends Fragment {
-    private ArrayList<Room> tempList;
+    private ArrayList<Room> tempList=new ArrayList<>();
     private View mRootView;
-    private MyRoomsAdapter mAdapter;
-
-    @BindView(R.id.recMyRooms)
-    RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    DaoRoom daoRoom;
     @BindView(R.id.btAddRoom)
     Button mAddRoomm;
     @BindView(R.id.EmptyTextView)
     TextView mEmptyTextView;
-
+    @BindView(R.id.recMyRooms)
+    RecyclerView mRecyclerView;
 
     public MyRoomsFragment() {
         // Required empty public constructor
@@ -50,32 +51,17 @@ public class MyRoomsFragment extends Fragment {
                              Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_my_rooms, container, false);
         ButterKnife.bind(this, mRootView);
+/*
 
-        //setup RecyclerView
-        ListenerOnFinish listenerOnFinish=new ListenerOnFinish(){
+        daoRoom=new DaoRoom( new User("kati","kati"),new ListenerOnFinish(){
             @Override
             public void OnFinish(ArrayList<Room> rooms) {
                 tempList =rooms;
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-                mAdapter = new MyRoomsAdapter(tempList, getContext());
-                mRecyclerView.setAdapter(mAdapter);
-                mRecyclerView.setLayoutManager(layoutManager);
+                mAdapter = new roomAdapter(tempList, new User("kati","kati"),getContext(),daoRoom);
+                MainActivity mainActivity=(MainActivity)getActivity();
+                mainActivity.setAdapter(mAdapter);
             }
-        };
-
-        DaoRoom daoRoom=new DaoRoom( new User("kati","kati"),listenerOnFinish, getContext(),false);
+        }, getContext(),false);*/
         return mRootView;
-    }
-
-
-
-    private void hideEmptyTextMessage() {
-        mRecyclerView.setVisibility(View.VISIBLE);
-        mEmptyTextView.setVisibility(View.GONE);
-    }
-
-    private void showEmptyTextMessage() {
-        mRecyclerView.setVisibility(View.GONE);
-        mEmptyTextView.setVisibility(View.VISIBLE);
     }
 }
