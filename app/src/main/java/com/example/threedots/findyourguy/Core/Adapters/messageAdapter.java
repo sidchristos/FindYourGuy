@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.threedots.findyourguy.Common.MessageActivity;
@@ -39,10 +40,18 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageV
         Message message=messageListArray.get(position);
         holder.tvUserName.setText(message.getUserName());
         holder.tvUID.setText(message.getUIDSender());
+        holder.tvUID.setVisibility(View.GONE);
         holder.tvMessage.setText(message.getMessage());
         if(user.getUserId().equals(message.getUIDSender())){
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT);
+
+            layoutParams.gravity = Gravity.END;
+
+            holder.messageHolder.setLayoutParams(layoutParams);
             holder.tvUserName.setVisibility(View.GONE);
-            holder.messageHolder.setGravity(Gravity.START);
+            //holder.messageHolder.setGravity(Gravity.START);
         }
     }
 
@@ -72,7 +81,7 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageV
         }
 
         private void functionToOpenClickedUserProfile(String UID) {
-            DaoUser daoUser=new DaoUser(ctn,UID);
+            new DaoUser(ctn,UID);
         }
     }
 }
