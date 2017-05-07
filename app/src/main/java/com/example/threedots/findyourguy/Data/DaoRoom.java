@@ -73,7 +73,7 @@ public class DaoRoom implements ValueEventListener {
                     rooms.add(temp.get(i));
                 }
             }
-            RecyclerView.Adapter adapter = new roomAdapter(rooms, user, context);
+            RecyclerView.Adapter adapter = new roomAdapter(rooms, user, context,this);
             recyclerView.setAdapter(adapter);
             recyclerView.scrollToPosition(0);
         }

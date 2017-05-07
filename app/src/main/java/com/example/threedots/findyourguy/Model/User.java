@@ -13,8 +13,22 @@ public class User {
     private String Address;
     private String Attitude;
     private String Description;
+    private boolean isComplite;
 
     public User(){}
+
+    public User(String userId, String name)
+    {
+
+        UserId = userId;
+        AvgRating = 0;
+        CRating =0;
+        Name = name;
+        Address = "";
+        Attitude = "";
+        Description = "";
+        isComplite=false;
+    }
 
     public User(String userId, double avgRating, long cRating, String name, String address, String attitude, String description)
     {
@@ -26,6 +40,7 @@ public class User {
         Address = address;
         Attitude = attitude;
         Description = description;
+        isComplite=true;
     }
 
     public String getUserId() {
@@ -85,4 +100,11 @@ public class User {
     }
 
 
+    public boolean isComplite() {
+        return isComplite;
+    }
+
+    public void setComplite(boolean complite) {
+        isComplite = complite;
+    }
 }
