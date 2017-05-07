@@ -20,9 +20,9 @@ import java.util.ArrayList;
 
 
 public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageViewHolder>{
-    ArrayList<Message> messageListArray;
-    User user;
-    Context ctn;
+    private ArrayList<Message> messageListArray;
+    private User user;
+    private Context ctn;
     public messageAdapter(ArrayList<Message> messageListArray, User user, Context ctn) {
         this.messageListArray = messageListArray;
         this.user = user;
@@ -43,15 +43,8 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageV
         holder.tvUID.setVisibility(View.GONE);
         holder.tvMessage.setText(message.getMessage());
         if(user.getUserId().equals(message.getUIDSender())){
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.MATCH_PARENT);
-
-            layoutParams.gravity = Gravity.END;
-
-            holder.messageHolder.setLayoutParams(layoutParams);
             holder.tvUserName.setVisibility(View.GONE);
-            //holder.messageHolder.setGravity(Gravity.START);
+            holder.messageHolder.setGravity(Gravity.START);
         }
     }
 
