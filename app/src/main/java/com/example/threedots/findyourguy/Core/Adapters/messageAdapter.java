@@ -54,11 +54,11 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageV
         return messageListArray.size();
     }
 
-    public static class MessageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    static class MessageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvMessage,tvUserName,tvUID;
         LinearLayout messageHolder;
         Context ctn;
-        public MessageViewHolder(View itemView,Context ctn) {
+        MessageViewHolder(View itemView,Context ctn) {
             super(itemView);
             tvMessage=(TextView) itemView.findViewById(R.id.tvMessage);
             tvUserName=(TextView) itemView.findViewById(R.id.tvUsername);
