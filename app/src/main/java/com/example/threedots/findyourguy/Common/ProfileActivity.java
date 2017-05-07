@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 
-import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.R;
 
 public class ProfileActivity extends AppCompatActivity {

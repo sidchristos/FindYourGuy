@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.threedots.findyourguy.Common.MessageActivity;
 import com.example.threedots.findyourguy.Data.DaoUser;
 import com.example.threedots.findyourguy.Model.Message;
 import com.example.threedots.findyourguy.Model.User;

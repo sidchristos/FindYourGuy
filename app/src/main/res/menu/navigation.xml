@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/Contacts"
-        android:icon="@drawable/group"
-        android:title="@string/contacts" />
-
-    <item
         android:id="@+id/My_Rooms"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/my_rooms" />
@@ -15,5 +10,11 @@
         android:id="@+id/Explore"
         android:icon="@drawable/global"
         android:title="@string/explore" />
+
+    <item
+        android:id="@+id/Contacts"
+        android:icon="@drawable/group"
+        android:title="@string/contacts" />
+
 
 </menu>
