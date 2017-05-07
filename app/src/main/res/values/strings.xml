@@ -13,4 +13,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="explore">Explore</string>
+    <string name="my_rooms">My Rooms</string>
+    <string name="contacts">Contacts</string>
 </resources>

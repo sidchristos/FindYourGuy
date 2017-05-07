@@ -47,17 +47,17 @@ public class MainActivityLogged extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
+                case R.id.Contacts:
                     MyRoomTab.setVisibility(View.GONE);
                     AllRoomsTab.setVisibility(View.GONE);
                     Contact.setVisibility(View.VISIBLE);
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.My_Rooms:
                     MyRoomTab.setVisibility(View.VISIBLE);
                     AllRoomsTab.setVisibility(View.GONE);
                     Contact.setVisibility(View.GONE);
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.Explore:
                     MyRoomTab.setVisibility(View.GONE);
                     AllRoomsTab.setVisibility(View.VISIBLE);
                     Contact.setVisibility(View.GONE);
