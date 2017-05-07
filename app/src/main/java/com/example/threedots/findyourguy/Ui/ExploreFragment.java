@@ -29,12 +29,6 @@ public class ExploreFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mRootView = inflater.inflate(R.layout.fragment_rooms_list, container, false);
-        MainActivity mainActivity=(MainActivity)getActivity();
-        RecyclerView recyclerView=(RecyclerView) container.findViewById(R.id.recAllRooms);
-        recyclerView.setLayoutManager(mainActivity.layoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.requestFocus();
-        DaoRoom daoRoom=new DaoRoom(mainActivity.user,recyclerView,mainActivity.getApplicationContext(),false);
 
         return mRootView;
     }

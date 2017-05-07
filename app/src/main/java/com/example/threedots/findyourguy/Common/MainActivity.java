@@ -12,8 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.threedots.findyourguy.Data.DaoRoom;
+import com.example.threedots.findyourguy.Data.DaoUser;
 import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,20 +25,22 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity{
     @BindView(R.id.viewpager) ViewPager viewPager;
     @BindView(R.id.tabs) TabLayout tabLayout;
-    public User user=new User("12345678",3.2,5,"kapoios","ag1","douleuw","kati");
     public RecyclerView.LayoutManager layoutManager;
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        layoutManager=new LinearLayoutManager(MainActivity.this);
         super.onCreate(savedInstanceState);
+        layoutManager=new LinearLayoutManager(MainActivity.this);
         setContentView(R.layout.activity_main);
+        Intent iin= getIntent();
+        Bundle b = iin.getExtras();
+        if(b!=null)
+        {
+            user=new User((String)b.get("UID"), (String)b.get("UserName"));
+        }
         ButterKnife.bind(this);
         setupViewPager();
     }
-
-
-
 
     @OnClick(R.id.btn_Set_Main)
     public void onClick() {
@@ -57,8 +62,7 @@ public class MainActivity extends AppCompatActivity{
         ButtonUsrProf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this,ProfileActivity.class);
-                startActivity(intent);
+                DaoUser daoUser=new DaoUser(MainActivity.this,user.getUserId());
                 dialog.dismiss();
             }
         });
@@ -72,7 +76,12 @@ public class MainActivity extends AppCompatActivity{
         ButtonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 dialog.dismiss();
+                finish();
             }
         });
         dialog.show();

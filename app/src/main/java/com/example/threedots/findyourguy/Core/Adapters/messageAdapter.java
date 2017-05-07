@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.threedots.findyourguy.Common.MessageActivity;
 import com.example.threedots.findyourguy.Model.Message;
 import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.R;
@@ -28,7 +30,7 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageV
     @Override
     public MessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_message,parent,false);
-        return new MessageViewHolder(view);
+        return new MessageViewHolder(view,ctn);
     }
 
     @Override
@@ -52,13 +54,15 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageV
     public static class MessageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvMessage,tvUserName,tvUID;
         LinearLayout messageHolder;
-        public MessageViewHolder(View itemView) {
+        Context ctn;
+        public MessageViewHolder(View itemView,Context ctn) {
             super(itemView);
             tvMessage=(TextView) itemView.findViewById(R.id.tvMessage);
             tvUserName=(TextView) itemView.findViewById(R.id.tvUsername);
             tvUID=(TextView) itemView.findViewById(R.id.tvUID);
             messageHolder=(LinearLayout)itemView.findViewById(R.id.messageHolder);
             messageHolder.setOnClickListener(this);
+            this.ctn=ctn;
         }
 
         @Override
@@ -67,6 +71,8 @@ public class messageAdapter extends RecyclerView.Adapter<messageAdapter.MessageV
         }
 
         private void functionToOpenClickedUserProfile(String UID) {
+            MessageActivity messageActivity=(MessageActivity) ctn;
+
         }
     }
 }

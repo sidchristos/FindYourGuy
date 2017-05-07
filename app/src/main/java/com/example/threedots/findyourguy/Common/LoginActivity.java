@@ -47,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                         myRefUser.child("UserName").setValue(etNewUserName.getText().toString());
                         myRefUser.child("Occupation").setValue(etOccupation.getText().toString());
                         myRefUser.child("Address").setValue(etAddress.getText().toString());
+                        myRefUser.child("Desc").setValue("");
                         myRefUser.child("CRating").setValue(0);
                         myRefUser.child("AvgRating").setValue(0);
                     }
