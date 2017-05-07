@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.threedots.findyourguy.Data.DaoRoom;
 import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.R;
 
@@ -34,6 +33,9 @@ public class MainActivity extends AppCompatActivity{
         ButterKnife.bind(this);
         setupViewPager();
     }
+
+
+
 
     @OnClick(R.id.btn_Set_Main)
     public void onClick() {

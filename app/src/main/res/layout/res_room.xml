@@ -12,6 +12,7 @@
     android:paddingTop="16dp">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/abc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#b4b3ad"
@@ -23,6 +24,7 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
+                android:id="@+id/cba"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"

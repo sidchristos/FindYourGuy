@@ -2,24 +2,24 @@ package com.example.threedots.findyourguy.Ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.threedots.findyourguy.Common.MainActivity;
-import com.example.threedots.findyourguy.Common.MessageActivity;
-import com.example.threedots.findyourguy.Common.ViewPagerAdapter;
 import com.example.threedots.findyourguy.Data.DaoRoom;
 import com.example.threedots.findyourguy.R;
 
+import butterknife.BindView;
 
-public class RoomsListFragment extends Fragment {
+
+public class ExploreFragment extends Fragment {
     private View mRootView;
 
+    @BindView(R.id.recMyRooms) RecyclerView mRecyclerView;
 
-    public RoomsListFragment() {
+    public ExploreFragment() {
         // Required empty public constructor
     }
 

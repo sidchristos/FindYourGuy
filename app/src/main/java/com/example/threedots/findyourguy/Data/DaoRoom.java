@@ -2,14 +2,11 @@ package com.example.threedots.findyourguy.Data;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.example.threedots.findyourguy.Common.MainActivity;
-import com.example.threedots.findyourguy.Common.MessageActivity;
 import com.example.threedots.findyourguy.Model.Room;
 import com.example.threedots.findyourguy.Model.User;
-import com.example.threedots.findyourguy.RecAdapers.messageAdapter;
-import com.example.threedots.findyourguy.RecAdapers.roomAdapter;
+import com.example.threedots.findyourguy.Core.Adapters.roomAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

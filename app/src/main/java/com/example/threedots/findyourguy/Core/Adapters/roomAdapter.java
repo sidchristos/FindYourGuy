@@ -1,4 +1,4 @@
-package com.example.threedots.findyourguy.RecAdapers;
+package com.example.threedots.findyourguy.Core.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
