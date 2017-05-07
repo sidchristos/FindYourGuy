@@ -2,8 +2,10 @@ package com.example.threedots.findyourguy.Data;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.example.threedots.findyourguy.Common.MainActivity;
+import com.example.threedots.findyourguy.Listeners.ListenerOnFinish;
 import com.example.threedots.findyourguy.Model.Room;
 import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.Core.Adapters.roomAdapter;
@@ -23,20 +25,19 @@ import java.util.Locale;
  */
 
 public class DaoRoom implements ValueEventListener {
+    private final ListenerOnFinish listenerOnFinish;
     private ArrayList<Room> rooms=new ArrayList<>();
     private Context context;
     private User user;
     private Boolean ShowOnMine;
-    private RecyclerView recyclerView;
     private DatabaseReference roomsRef;
-    private static final String TAG = MainActivity.class.getSimpleName();
-    public DaoRoom(User user,RecyclerView recyclerView, Context context,Boolean ShowOnMine){
+    public DaoRoom(User user,ListenerOnFinish listenerOnFinish, Context context,Boolean ShowOnMine){
         this.context=context;
         this.user=user;
         this.ShowOnMine=ShowOnMine;
+        this.listenerOnFinish=listenerOnFinish;
         roomsRef = FirebaseDatabase.getInstance().getReference()
                 .child("ChatRooms");
-        this.recyclerView=recyclerView;
         roomsRef.addValueEventListener(this);
     }
 
@@ -60,6 +61,7 @@ public class DaoRoom implements ValueEventListener {
                 }else{
                     room=new Room(ID,Title,UIDCreator,UserName, false," ");
                 }
+                Toast.makeText(context,ID+" "+Title+" "+UIDCreator+" "+UserName,Toast.LENGTH_LONG).show();
                 temp.add(room);
             }
             int i;
@@ -70,9 +72,7 @@ public class DaoRoom implements ValueEventListener {
                     rooms.add(temp.get(i));
                 }
             }
-            RecyclerView.Adapter adapter = new roomAdapter(rooms, user, context,this);
-            recyclerView.setAdapter(adapter);
-            recyclerView.scrollToPosition(0);
+            listenerOnFinish.OnFinish(rooms);
         }
     }
 
