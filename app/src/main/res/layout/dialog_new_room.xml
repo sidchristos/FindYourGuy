@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="250dp"
-    android:layout_height="200dp"
+    android:layout_height="250dp"
     android:background="#3E80B4"
     android:orientation="vertical">
 
@@ -14,8 +14,8 @@
         android:inputType="textPersonName"
         android:selectAllOnFocus="false"
         android:singleLine="true"
-        android:textStyle="bold"
-        android:text="New Room" />
+        android:text="New Room"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editText3"
@@ -27,15 +27,21 @@
         android:text="Δωστε μια περιγραφή"
         android:textSize="15dp" />
 
-    <ScrollView android:layout_height="30dp"
-        android:layout_width="match_parent">
     <EditText
         android:id="@+id/editText4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textMultiLine" />
-    </ScrollView>
+        android:inputType="textLongMessage" />
+
+    <Button
+        android:id="@+id/btn_publish"
+        android:layout_width="207dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="60dp"
+        android:text="Δημιουργια" />
 
 
 </LinearLayout>

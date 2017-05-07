@@ -45,6 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
             etAddressP.setText(Address);
             etOccupation.setText(Occupation);
             etDesc.setText(Desc);
+
             Rb.setRating((float) (AvgRating/CRating));
         }else{
             finish();
