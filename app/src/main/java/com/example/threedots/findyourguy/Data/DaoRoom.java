@@ -16,9 +16,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by Cake on 6/5/2017.
- */
 
 public class DaoRoom implements ValueEventListener {
     private final RecyclerView recyclerView;
@@ -28,8 +25,8 @@ public class DaoRoom implements ValueEventListener {
     private User user;
     private Boolean ShowOnMine;
     private DatabaseReference roomsRef;
-    Room room;
-    String ID,Title,UIDCreator,UserName;
+    private Room room;
+    private String ID,Title,UIDCreator,UserName;
     public DaoRoom(User user,RecyclerView recyclerView, Context context,Boolean ShowOnMine){
         this.context=context;
         this.user=user;
@@ -67,7 +64,7 @@ public class DaoRoom implements ValueEventListener {
 
     }
 
-    public void createRoom(String Title,Boolean IsPrivate,String Password){
+    public void createRoom(String Title){
         SimpleDateFormat sdf;
         Date now = new Date();
         sdf = new SimpleDateFormat("yyyyMMddHHmmssSSS", Locale.ENGLISH);

@@ -90,6 +90,7 @@ public class MainActivityLogged extends AppCompatActivity {
                 dialogCreate();
             }
         });
+
         ImageView img =(ImageView)findViewById(R.id.imageView3) ;
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,11 +185,7 @@ public class MainActivityLogged extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String Title=TitleRoom.getText().toString();
-                Title=Title.replaceAll("^ +| +$|( )+", "$1");
-                if(Title.length()<3)
-                    daoRoom.createRoom(Title,false,"");
-                else
-                    Toast.makeText(context,"not long name for a Title",Toast.LENGTH_SHORT).show();
+                    daoRoom.createRoom(Title);
                 dialog.dismiss();
             }
         });
