@@ -2,10 +2,6 @@ package com.example.threedots.findyourguy.Data;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
-
-import com.example.threedots.findyourguy.Common.MainActivity;
-import com.example.threedots.findyourguy.Listeners.ListenerOnFinish;
 import com.example.threedots.findyourguy.Model.Room;
 import com.example.threedots.findyourguy.Model.User;
 import com.example.threedots.findyourguy.Core.Adapters.roomAdapter;
@@ -79,9 +75,6 @@ public class DaoRoom implements ValueEventListener {
         roomsRef.child(ID).child("UIDCreator").setValue(user.getUserId());
         roomsRef.child(ID).child("UserName").setValue(user.getName());
         roomsRef.child(ID).child("Title").setValue(Title);
-        roomsRef.child(ID).child("IsPrivate").setValue(IsPrivate);
-        if(IsPrivate)
-            roomsRef.child(ID).child("Password").setValue(Password);
     }
 
     public void DeleteRoom(final String Key){

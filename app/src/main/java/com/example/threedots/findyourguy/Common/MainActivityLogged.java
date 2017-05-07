@@ -1,5 +1,6 @@
 package com.example.threedots.findyourguy.Common;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +13,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.threedots.findyourguy.Core.Adapters.roomAdapter;
 import com.example.threedots.findyourguy.Data.DaoRoom;
+import com.example.threedots.findyourguy.Data.DaoUser;
 import com.example.threedots.findyourguy.Listeners.ListenerOnFinish;
 import com.example.threedots.findyourguy.Model.Room;
 import com.example.threedots.findyourguy.Model.User;
@@ -29,16 +34,11 @@ public class MainActivityLogged extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private TextView mTextMessage;
     public ConstraintLayout MyRoomTab,AllRoomsTab,Contact;
     public RecyclerView.LayoutManager layoutManager;
-    private TextView textViewUsername;
     private User user;
     RecyclerView mRecyclerView;
     RecyclerView recAllRooms;
-    private DaoRoom daoRoom;
-    private DaoRoom daoRoomForAll;
-    private ArrayList<Room> tempList;
     private Context context;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -67,6 +67,7 @@ public class MainActivityLogged extends AppCompatActivity {
         }
 
     };
+    private DaoRoom daoRoom,daoRoomForAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +78,17 @@ public class MainActivityLogged extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         context=getApplicationContext();
-        textViewUsername=(TextView)findViewById(R.id.textViewUsername);
         MyRoomTab=(ConstraintLayout) findViewById(R.id.MyRoom);
         AllRoomsTab=(ConstraintLayout)findViewById(R.id.AllRoom);
         Contact=(ConstraintLayout)findViewById(R.id.Contact);
+
+        ImageView img =(ImageView)findViewById(R.id.imageView3) ;
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               dialog();
+            }
+        });
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -96,7 +104,7 @@ public class MainActivityLogged extends AppCompatActivity {
     }
 
     private void init(User user) {
-        textViewUsername.setText("Logged as:"+user.getName());
+        this.user=user;
         mRecyclerView=(RecyclerView)findViewById(R.id.recAllRooms);
         recAllRooms=(RecyclerView)findViewById(R.id.recMyRooms);
 
@@ -121,5 +129,39 @@ public class MainActivityLogged extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    private void dialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_main_menu);
+        Button ButtonUsrProf = (Button) dialog.findViewById(R.id.btn_user_profile);
+        Button ButtonSettings = (Button) dialog.findViewById(R.id.btn_settings);
+        Button ButtonLogout = (Button) dialog.findViewById(R.id.btn_logout);
+        ButtonUsrProf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DaoUser daoUser=new DaoUser(getApplicationContext(),user.getUserId());
+                dialog.dismiss();
+            }
+        });
+        ButtonSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "Settings not implemented yet" , Toast.LENGTH_SHORT ).show();
+                dialog.dismiss();
+            }
+        });
+        ButtonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent=new Intent(MainActivityLogged.this,LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                dialog.dismiss();
+                finish();
+            }
+        });
+        dialog.show();
     }
 }
