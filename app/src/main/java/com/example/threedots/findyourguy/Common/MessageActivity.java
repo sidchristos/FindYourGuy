@@ -1,5 +1,6 @@
 package com.example.threedots.findyourguy.Common;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,7 +11,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.threedots.findyourguy.Data.DaoMessage;
@@ -23,16 +28,20 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MessageActivity extends AppCompatActivity {
+public class MessageActivity extends AppCompatActivity implements View.OnKeyListener {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     TextView TitleRoom,athorRoom;
+    DaoMessage daoMessage;
+    EditText etMessage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
         TitleRoom=(TextView)findViewById(R.id.tvTitleRoom) ;
         athorRoom=(TextView)findViewById(R.id.tvUserNameRoom) ;
+        etMessage=(EditText)findViewById(R.id.etMessage);
+        etMessage.setOnKeyListener(this);
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -59,7 +68,7 @@ public class MessageActivity extends AppCompatActivity {
                         String UIDCreator =(String)b.get("UIDCreator");
                         Room room=new Room(ID,Title,UIDCreator,UserName,false);
                         User user=new User(userFb.getUid(),userFb.getDisplayName());
-                        DaoMessage daoMessage=new DaoMessage(room,user,recyclerView,getApplicationContext());
+                        daoMessage=new DaoMessage(room,user,recyclerView,getApplicationContext());
                     }else{
                         finish();
                     }
@@ -68,8 +77,10 @@ public class MessageActivity extends AppCompatActivity {
                 }
             }
         };
-
     }
+
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -81,5 +92,21 @@ public class MessageActivity extends AppCompatActivity {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                (keyCode == KeyEvent.KEYCODE_ENTER)) {
+            View view = this.getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+            daoMessage.SendMessage(etMessage.getText().toString());
+            etMessage.setText("");
+            return true;
+        }
+        return false;
     }
 }

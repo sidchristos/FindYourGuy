@@ -25,7 +25,7 @@
         android:ems="10"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:text="Δωστε μια περιγραφή"
+        android:text="Δωστε ενα τίτλο"
         android:textSize="15dp" />
 
     <EditText

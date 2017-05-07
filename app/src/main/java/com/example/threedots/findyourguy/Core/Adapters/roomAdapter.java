@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.threedots.findyourguy.Common.MainActivity;
-import com.example.threedots.findyourguy.Common.MainActivityLogged;
 import com.example.threedots.findyourguy.Common.MessageActivity;
 import com.example.threedots.findyourguy.Data.DaoRoom;
 import com.example.threedots.findyourguy.Model.Room;
